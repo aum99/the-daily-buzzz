@@ -1,0 +1,40 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+
+            <h1>Log In</h1>
+            <span class="subheading">Welcome Back!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8 col-md-10 mx-auto content">
+          <form method="post"  action="{{ url_for('login')}}">
+          {% for message in get_flashed_messages() %}
+<div class="alert alert-danger" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+        {{ wtf.quick_form(form, novalidate=True, button_map={"login": "primary"}) }}
+              </form>
+      </div>
+    </div>
+  </div>
+
+
+{% include "footer.html" %}
+{% endblock %}
