@@ -15,13 +15,13 @@ my_email = os.environ.get('MY_EMAIL')
 password = os.environ.get('PASSWORD')
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SECRET_KEY'] = 'thisissecret'
 ckeditor = CKEditor(app)
 Bootstrap(app)
 Gravatar(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://blogsdb_user:5ENVjiBvuvMt5hGYrHQiBVx9fJ5az0ao@dpg-cgdklau4dadbr0rqdakg-a.singapore-postgres.render.com/blogsdb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -54,7 +54,6 @@ class BlogPost(db.Model):
 
     # ***************Parent Relationship*************#
     comments = relationship("Comment", back_populates="parent_post")
-
 
 class Comment(db.Model):
     __tablename__ = "comments"
