@@ -1,64 +1,66 @@
 {% include "header.html" %}
 
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1485498128961-422168ba5f87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2130&q=80')">
+<!-- Page Header -->
+<header class="masthead"
+        style="background-image: url('https://images.unsplash.com/photo-1485498128961-422168ba5f87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2130&q=80')">
     <div class="overlay"></div>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h2> YOUR GO-TO DESTINATION <br>for all things college-related!</h2>
-            <br>
-            <span class="subheading">Explore our diverse collection of articles, packed with valuable insights and personal experiences from students, professors, and guest contributors. From study tips and career advice to campus events and personal growth, we cover a wide range of topics to help you navigate through your college journey.</span>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h2> YOUR GO-TO DESTINATION <br>for all things tech-related!</h2>
+                    <br>
+                    <span class="subheading">Explore our diverse collection of articles, packed with valuable insights and personal experiences from students, professors, and known contributors. From study tips and career advice to campus events and personal growth, I cover a wide range of topics to help you navigate through your journey.</span>
 
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 {% for message in get_flashed_messages() %}
 <div class="alert alert-primary" role="alert">
-  {{ message }}
+    {{ message }}
 </div>
 {% endfor %}
-  <!-- Main Content -->
-  <div class="container">
+<!-- Main Content -->
+<div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        {% for post in all_posts %}
-        <div class="post-preview">
-          <a href="{{ url_for('show_post', post_id=post.id) }}">
-            <h2 class="post-title">
-              {{post.title}}
-            </h2>
-            <h3 class="post-subtitle">
-              {{post.subtitle}}
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">{{post.author.name.title()}}</a>
-            on {{post.date}}
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% for post in all_posts %}
+            <div class="post-preview">
+                <a href="{{ url_for('show_post', post_id=post.id) }}">
+                    <h2 class="post-title">
+                        {{post.title}}
+                    </h2>
+                    <h3 class="post-subtitle">
+                        {{post.subtitle}}
+                    </h3>
+                </a>
+                <p class="post-meta">Posted by
+                    <a href="#">{{post.author.name.title()}}</a>
+                    on {{post.date}}
 
-            {% if post.author_id == current_user.id or current_user.id == 1%}
-            <a href="{{url_for('delete_post', post_id=post.id) }}">✘</a>
-            {% endif %}
-          
-          </p>
+                    {% if post.author_id == current_user.id or current_user.id == 1%}
+                    <a href="{{url_for('delete_post', post_id=post.id) }}">✘</a>
+                    {% endif %}
+
+                </p>
+            </div>
+            <hr>
+            {% endfor %}
+
+            <br>
+            <!-- New Post -->
+            <div class="clearfix">
+                {% if current_user.id == 1 %}
+                <button class="button-30 float-right" role="button"><a href="{{url_for('add_new_post')}}">Create New
+                    Post</a></button>
+                {% endif %}
+            </div>
+            <br>
         </div>
-        <hr>
-        {% endfor %}
-
-        <br>
-        <!-- New Post -->
-        <div class="clearfix">
-
-<button class="button-30 float-right" role="button"><a href="{{url_for('add_new_post')}}">Create New Post</a></button>
-
-        </div>
-        <br>
-      </div>
     </div>
-  </div>
-  <hr>
+</div>
+<hr>
 
 {% include "footer.html" %}

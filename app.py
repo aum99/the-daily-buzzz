@@ -220,6 +220,10 @@ def delete_post(post_id):
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html')
+
 # db.create_all()
 
 if __name__ == "__main__":

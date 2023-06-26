@@ -1,38 +1,39 @@
 {% include "header.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/contact-bg.jpg')}}')">
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')">
     <div class="overlay"></div>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="page-heading">
-            <h1>Contact Me</h1>
-            <span class="subheading">Have questions? We have answers.</span>
-          </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>Contact Me</h1>
+                    <span class="subheading">Have questions? We have answers.</span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 {% for message in get_flashed_messages() %}
 <div class="alert alert-primary" role="alert" align="center">
-  {{ message }}
+    {{ message }}
 </div>
 {% endfor %}
 
-  <!-- Main Content -->
-  <div class="container">
+<!-- Main Content -->
+<div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <p>Want to get in touch? Fill out the form below to send me a message and we will get back to you as soon as possible!</p>
-        <form name="sentMessage" id="contactForm" action="{{ url_for('contact') }}" method="post" novalidate>
-          {{ form.hidden_tag() }}
-          {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
-        </form>
-      </div>
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>Want to get in touch? Fill out the form below to send me a message and we will get back to you as soon as
+                possible!</p>
+            <form name="sentMessage" id="contactForm" action="{{ url_for('contact') }}" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+            </form>
+        </div>
     </div>
-  </div>
+</div>
 
-  <hr>
+<hr>
 
-  {% include "footer.html" %}
+{% include "footer.html" %}
