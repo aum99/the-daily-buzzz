@@ -155,7 +155,7 @@ def contact():
         email = form.email.data
         phone = form.phone.data
         message = form.message.data
-        with smtplib.SMTP("smtp.gmail.com") as connection:
+        with smtplib.SMTP("smtp.gmail.com",587) as connection:
             connection.starttls()
             connection.login(user=my_email, password=password)
             connection.sendmail(
@@ -167,6 +167,7 @@ def contact():
                     f"\n\nPhone: {phone}"
                     f"\n\nMessage: {message}"
             )
+            connection.close()
         flash("Your query has been sent successfully")
         return redirect(url_for('contact'))
     return render_template("contact.html", form=form)
